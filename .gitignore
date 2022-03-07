@@ -1,0 +1,6 @@
+# Directories containing binaries
+debug
+release
+
+# Output File
+output.tga
