@@ -5,7 +5,7 @@
 # Compiler flags
 #
 CXX = g++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++20
+CXXFLAGS = -Wall -Wextra -Werror -std=c++20 -lpthread
 
 
 # **************************************
