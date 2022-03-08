@@ -8,7 +8,8 @@
 #include <iostream>
 #include <fstream>
 #include <chrono>
-#include <time.h>
+#include <thread>
+#include <vector>
 
 
 class mandelbrot
@@ -21,7 +22,7 @@ class mandelbrot
 
 
     void output_image(const char *filename);
-    void compute_mandelbrot();
+    void compute_mandelbrot(int start, int strip);
 
 public:
     void create_mandelbrot();

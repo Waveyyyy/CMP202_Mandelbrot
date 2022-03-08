@@ -47,9 +47,9 @@ void mandelbrot::output_image(const char *filename)
 /* Computes the mandelbrot set values
  * Also assigns a colour value to each pixel
  */
-void mandelbrot::compute_mandelbrot()
+void mandelbrot::compute_mandelbrot(int start, int strip)
 {
-    for (int i=0; i < this->width*this->height; ++i)
+    for (int i=start; i < start+strip; ++i)
     {
         int x = (int) (i % this->width);
         int y = (int) (i / this->width);
@@ -75,8 +75,26 @@ void mandelbrot::create_mandelbrot()
 {
     printf("Computing mandelbrot...\n");
 
+    // Number of threads
+    int chunkNum = 16;
+    // Size of data each thread processes
+    int chunkSize = (this->width*this->height)/chunkNum;
+
     std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
-    this->compute_mandelbrot();
+
+    std::vector<std::thread> things{};
+    for (int i=0; i < chunkNum; ++i)
+    {
+        // Create threads and store in vector
+        things.push_back(std::thread(&mandelbrot::compute_mandelbrot, this, (chunkSize*i), chunkSize));
+    } 
+
+    for (int i=0; i < chunkNum; ++i)
+    {
+        // Join each completed thread in order to the main thread
+        things[i].join();
+    }
+
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
