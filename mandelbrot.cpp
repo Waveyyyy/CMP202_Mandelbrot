@@ -64,17 +64,10 @@ void mandelbrot::compute_mandelbrot()
             z = (z * z) + complex_coords;
             iterations++;
         }
-
-        if (iterations == MAX_ITERATIONS)
-        {
-            // Coordinates within the mandelbrot set are Black
-            image[x + this->width*y] = 0x000000;
-        } else
-        {
-            // Map the value of iterations to a hex colour value 
-            // between 0x0 and 0xFFFFFF
-            image[x + this->width*y] = 0 + ((0xFFFFFF - 0) / (MAX_ITERATIONS - 0) * (iterations - 0));
-        }
+        // Map the value of iterations to a hex colour value 
+        // between 0x0 and 0xFFFFFF
+        image[x + this->width*y] = 0xFFFFFF - (0 + ((0xFFFFFF - 0) / (MAX_ITERATIONS - 0)) * (iterations - 0));
+        // subtracting the mapped value from 0xFFFFFF makes it pretty and pink
     }
 }
 
