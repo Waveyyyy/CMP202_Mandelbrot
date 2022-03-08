@@ -30,14 +30,14 @@ void mandelbrot::output_image(const char *filename)
     // loop width*height iterations
     for (int i=0; i < this->width*this->height; ++i)
     {
-        // use bit shifting to properly allocate colours per pixel
+        // Use bit shifting to properly allocate colours per pixel
         uint8_t pixel[3] = {
             // Colour Channels : 0xRRGGBB
-            (uint8_t) (image[i] & 0xFF), // blue channel
-            (uint8_t) ((image[i] >> 8) & 0xFF), // green channel
-            (uint8_t) ((image[i] >> 16) & 0xFF), // red channel
+            (uint8_t) (image[i] & 0xFF), // Blue channel
+            (uint8_t) ((image[i] >> 8) & 0xFF), // Green channel
+            (uint8_t) ((image[i] >> 16) & 0xFF), // Red channel
         };
-        // write pixel to file
+        // Write each pixel to file
         output_file.write((const char *)pixel, 3);
     }
     
