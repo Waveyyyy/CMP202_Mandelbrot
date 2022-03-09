@@ -9,10 +9,11 @@ CMP202.
 
 ## To be done
 
-1. Change from black and white image to colour.
-1. Implement threading.
+1. ~~Change from black and white image to colour.~~
+1. ~~Implement threading.~~
 1. Performance optimisation.
 1. Figure out sdl2 to show mandelbrot generation as it happens.
+1. Improve threading (thread pools etc)
 
 ## Improvements
 
