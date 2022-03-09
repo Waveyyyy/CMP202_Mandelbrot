@@ -2,8 +2,14 @@
 debug
 release
 
+# Cache directory
+.cache
+
 # Output File
 output.tga
 
 # Profiling files
 perf.*
+
+# Compile_commands.json (for clangd)
+compile_commands.json
