@@ -11,33 +11,30 @@
 #include <thread>
 #include <vector>
 
+class mandelbrot {
+        int width = { 0 };
+        int height = { 0 };
+        const int MAX_ITERATIONS = 1000;
+        uint32_t *image;
+        double scale = 0.75;
 
-class mandelbrot
-{
-    int width = {0};
-    int height = {0};
-    const int MAX_ITERATIONS = 1000;
-    uint32_t *image;
-    double scale = 0.75;
+        void output_image(const char *filename);
+        void compute_mandelbrot(int start, int strip);
 
+    public:
+        void create_mandelbrot();
 
-    void output_image(const char *filename);
-    void compute_mandelbrot(int start, int strip);
+        // Allows user to choose resolution
+        mandelbrot(int width, int height) : width(width), height(height)
+        {
+                // Image resolution
+                this->image = new uint32_t[height * width];
+        }
 
-public:
-    void create_mandelbrot();
-
-    // Allows user to choose resolution
-    mandelbrot(int width, int height): width(width), height(height)
-    {
-        // Image resolution
-        this->image = new uint32_t[height*width];
-    }
-
-    // Default constructor
-    mandelbrot(): mandelbrot(1920,1080){}
-
+        // Default constructor
+        mandelbrot() : mandelbrot(1920, 1080)
+        {
+        }
 };
-
 
 #endif
